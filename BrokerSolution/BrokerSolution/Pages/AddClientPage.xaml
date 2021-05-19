@@ -17,21 +17,21 @@
                     <TextBox x:Name="TbSurname"
                              Width="200"
                             HorizontalAlignment="Left"
-                             MaxLength="50"/>
+                             MaxLength="50" PreviewTextInput="TbSurname_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Name"/>
                     <TextBox x:Name="TbName"
                              Width="200"
                             HorizontalAlignment="Left"
-                             MaxLength="50"/>
+                             MaxLength="50" PreviewTextInput="TbName_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Patronymic"/>
                     <TextBox x:Name="TbPatronymic"
                              Width="200"
                             HorizontalAlignment="Left"
-                             MaxLength="50"/>
+                             MaxLength="50" PreviewTextInput="TbPatronymic_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Broker"/>

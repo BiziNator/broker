@@ -33,7 +33,10 @@ namespace BrokerSolution.Pages
                 NavigationService.Navigate(new Pages.MenuPage());
             }
             else
-            TbPassword.Clear();
+            {
+                MessageBox.Show("Введите корректные данные!");
+                TbPassword.Clear();
+            }
             
         }
     }

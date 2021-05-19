@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,7 +33,7 @@ namespace BrokerSolution.Pages
         private void BtnAddClient_Click(object sender, RoutedEventArgs e)
         {
             Data.Client client = new Data.Client()
-            { 
+            {
                 Name = TbName.Text,
                 Surname = TbSurname.Text,
                 Patronymic = TbPatronymic.Text,
@@ -49,6 +50,21 @@ namespace BrokerSolution.Pages
         {
             NavigationService?.GoBack();
 
+        }
+
+        private void TbSurname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
+        }
+
+        private void TbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
+        }
+
+        private void TbPatronymic_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
         }
     }
 }
