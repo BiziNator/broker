@@ -43,5 +43,20 @@ namespace BrokerSolution.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void TbSurname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
+        }
+
+        private void TbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
+        }
+
+        private void TbPatronymic_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = (Char.IsDigit(e.Text, 0));
+        }
     }
 }

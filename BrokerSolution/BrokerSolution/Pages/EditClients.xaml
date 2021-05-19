@@ -17,7 +17,7 @@
                              Width="200"
                             HorizontalAlignment="Left"
                              MaxLength="50"
-                             Text="{Binding Surname}"/>
+                             Text="{Binding Surname}" PreviewTextInput="TbSurname_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Name"/>
@@ -25,7 +25,7 @@
                              Width="200"
                             HorizontalAlignment="Left"
                              MaxLength="50"
-                             Text="{Binding Name}"/>
+                             Text="{Binding Name}" PreviewTextInput="TbName_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Patronymic"/>
@@ -33,7 +33,7 @@
                              Width="200"
                             HorizontalAlignment="Left"
                              MaxLength="50"
-                             Text="{Binding Patronymic}"/>
+                             Text="{Binding Patronymic}" PreviewTextInput="TbPatronymic_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Margin="15">
                     <Label Content="Broker"/>

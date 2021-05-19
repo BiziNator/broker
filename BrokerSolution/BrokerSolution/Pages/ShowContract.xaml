@@ -18,7 +18,7 @@
             Margin="10"
             x:Name="DGContracts"
             AutoGenerateColumns="False"
-            >
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="Номер документа"
                                      Binding="{Binding Number}"/>
