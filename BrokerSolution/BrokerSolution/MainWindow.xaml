@@ -1,0 +1,28 @@
+﻿<Window x:Class="BrokerSolution.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrokerSolution"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="850"
+        FontFamily="Comic Sans Ms"
+        Background="Gray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Label Content="Брокерский клуб"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+        </StackPanel>
+        <Frame x:Name="mainFrame"
+               Grid.Row="1"
+               Margin="5"
+               NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

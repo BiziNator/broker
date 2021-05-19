@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BrokerCompanyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BrokerCompanyDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Broker" EntityType="BrokerCompanyDBModel.Broker" />
+    <EntitySet Name="Client" EntityType="BrokerCompanyDBModel.Client" />
+    <EntitySet Name="Contract" EntityType="BrokerCompanyDBModel.Contract" />
+    <EntitySet Name="Deal" EntityType="BrokerCompanyDBModel.Deal" />
+    <EntitySet Name="Role" EntityType="BrokerCompanyDBModel.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="BrokerCompanyDBModel.sysdiagrams" />
+    <AssociationSet Name="FK_Broker_Role" Association="BrokerCompanyDBModel.FK_Broker_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Broker" EntitySet="Broker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_Broker" Association="BrokerCompanyDBModel.FK_Client_Broker">
+      <End Role="Broker" EntitySet="Broker" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Broker" Association="BrokerCompanyDBModel.FK_Contract_Broker">
+      <End Role="Broker" EntitySet="Broker" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Client" Association="BrokerCompanyDBModel.FK_Contract_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_Contract" Association="BrokerCompanyDBModel.FK_Deal_Contract">
+      <End Role="Contract" EntitySet="Contract" />
+      <End Role="Deal" EntitySet="Deal" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Broker">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleBroker" Type="Int32" />
+    <Property Name="Login" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="BrokerCompanyDBModel.FK_Broker_Role" FromRole="Broker" ToRole="Role" />
+    <NavigationProperty Name="Client" Relationship="BrokerCompanyDBModel.FK_Client_Broker" FromRole="Broker" ToRole="Client" />
+    <NavigationProperty Name="Contract" Relationship="BrokerCompanyDBModel.FK_Contract_Broker" FromRole="Broker" ToRole="Contract" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdBroker" Type="Int32" />
+    <NavigationProperty Name="Broker" Relationship="BrokerCompanyDBModel.FK_Client_Broker" FromRole="Client" ToRole="Broker" />
+    <NavigationProperty Name="Contract" Relationship="BrokerCompanyDBModel.FK_Contract_Client" FromRole="Client" ToRole="Contract" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdClient" Type="Int32" />
+    <Property Name="IdBroker" Type="Int32" />
+    <NavigationProperty Name="Broker" Relationship="BrokerCompanyDBModel.FK_Contract_Broker" FromRole="Contract" ToRole="Broker" />
+    <NavigationProperty Name="Client" Relationship="BrokerCompanyDBModel.FK_Contract_Client" FromRole="Contract" ToRole="Client" />
+    <NavigationProperty Name="Deal" Relationship="BrokerCompanyDBModel.FK_Deal_Contract" FromRole="Contract" ToRole="Deal" />
+  </EntityType>
+  <EntityType Name="Deal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="NumberContract" Type="Int32" />
+    <NavigationProperty Name="Contract" Relationship="BrokerCompanyDBModel.FK_Deal_Contract" FromRole="Deal" ToRole="Contract" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_role" />
+    </Key>
+    <Property Name="Id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Broker" Relationship="BrokerCompanyDBModel.FK_Broker_Role" FromRole="Role" ToRole="Broker" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Broker_Role">
+    <End Type="BrokerCompanyDBModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="BrokerCompanyDBModel.Broker" Role="Broker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_role" />
+      </Principal>
+      <Dependent Role="Broker">
+        <PropertyRef Name="RoleBroker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_Broker">
+    <End Type="BrokerCompanyDBModel.Broker" Role="Broker" Multiplicity="0..1" />
+    <End Type="BrokerCompanyDBModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Broker">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="IdBroker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Broker">
+    <End Type="BrokerCompanyDBModel.Broker" Role="Broker" Multiplicity="0..1" />
+    <End Type="BrokerCompanyDBModel.Contract" Role="Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Broker">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="IdBroker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Client">
+    <End Type="BrokerCompanyDBModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="BrokerCompanyDBModel.Contract" Role="Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_Contract">
+    <End Type="BrokerCompanyDBModel.Contract" Role="Contract" Multiplicity="0..1" />
+    <End Type="BrokerCompanyDBModel.Deal" Role="Deal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contract">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Deal">
+        <PropertyRef Name="NumberContract" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
