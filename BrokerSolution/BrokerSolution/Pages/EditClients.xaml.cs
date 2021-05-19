@@ -31,7 +31,7 @@ namespace BrokerSolution.Pages
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
         {
-            if (contextClient.ID == 0)
+            if (contextClient.ID != 0)
             {
                 MainWindow.db.Client.Add(contextClient);
                 MainWindow.db.SaveChanges();
