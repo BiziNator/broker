@@ -24,7 +24,7 @@ namespace BrokerSolution.Pages
         public AddClientPage()
         {
             InitializeComponent();
-            CbBroker.ItemsSource = MainWindow.db.Client.ToList();
+            CbBroker.ItemsSource = MainWindow.db.Broker.ToList();
         }
         public void Refresh()
         {

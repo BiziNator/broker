@@ -18,7 +18,7 @@
             Margin="10"
             x:Name="DGDeals"
             AutoGenerateColumns="False"
-            >
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="Номер сделки"
                                      Binding="{Binding ID}"/>
